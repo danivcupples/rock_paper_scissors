@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  background: #330b5b;
+  color: white;
+  font-family: 'Lato', Helvetica, sans-serif;
+  margin: 40px auto;
+  padding: 0 100px;
+  text-align: center;
+  font-size: 2em;
+  letter-spacing: 2px;
+}
+
+.choices {
+  font-size: 70px;
+}
+
+.fa {
+  padding: 20px;
+}
