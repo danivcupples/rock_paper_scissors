@@ -15,7 +15,7 @@ $(document).ready(function(){
   //declare variables for score, options, user play, comp play
   var score = {user: 0, computer: 0};
   var options = ["rock", "paper", "scissors"];
-  var userPlay;
+  var userPlay = "";
   var compPlay;
 
   //get random integer for computer turn
@@ -25,27 +25,38 @@ $(document).ready(function(){
       return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
 
-  //define function for what at turn looks like
-  function playTurn(){
-    //use click listeners for user play
-    $(".rock").click(function(){
-      userPlay = options[0];
-      console.log("user chose " + options[0]);
-    });
-
-    $(".paper").click(function(){
-      userPlay = options[1];
-      console.log("user chose " + options[1]);
-    });
-
-    $(".scissors").click(function(){
-      userPlay = options[2];
-      console.log("user chose " + options[2]);
-    });
+  function compTurn(){
     //comp uses random number passed into options array
     compPlay = options[getRandomInt(0,3)];
     //print out choices as check
     console.log("User: " + userPlay + " & Comp: " + compPlay);
+  }
+
+  //define function for what at turn looks like
+  function playTurn(){
+    //use click listeners for user play
+
+    $(".rock").click(function(){
+        userPlay = options[0];
+        console.log("user chose " + options[0]);
+      });
+
+    $(".paper").click(function(){
+        userPlay = options[1];
+        console.log("user chose " + options[1]);
+      });
+
+    $(".scissors").click(function(){
+        userPlay = options[2];
+        console.log("user chose " + options[2]);
+      });
+
+    if (userPlay === "rock" || userPlay === "scissors" || userPlay === "paper"){
+      compTurn();
+    } else {
+      console.log("please click a selection to play")
+    }
+
   }
 
   //define function to increase user score
@@ -54,6 +65,7 @@ $(document).ready(function(){
     score.user += 1;
     //pass into scoreboard
     $(".user").html(score.user);
+    userPlay = "";
     console.log(score);
   }
 
@@ -62,6 +74,7 @@ $(document).ready(function(){
     score.computer += 1;
     //pass into scoreboard
     $(".comp").html(score.computer);
+    userPlay = "";
     console.log(score);
   }
 
