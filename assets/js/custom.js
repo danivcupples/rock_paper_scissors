@@ -15,7 +15,7 @@ $(document).ready(function(){
   //declare variables for score, options, user play, comp play
   var score = {user: 0, computer: 0};
   var options = ["rock", "paper", "scissors"];
-  var userPlay = "";
+  var userPlay = false;
   var compPlay;
 
   //get random integer for computer turn
@@ -34,28 +34,35 @@ $(document).ready(function(){
 
   //define function for what at turn looks like
   function playTurn(){
-    //use click listeners for user play
+    // //use click listeners for user play
+    //
+    // $(".rock").click(function(){
+    //     userPlay = options[0];
+    //     console.log("user chose " + options[0]);
+    //   });
+    //
+    // $(".paper").click(function(){
+    //     userPlay = options[1];
+    //     console.log("user chose " + options[1]);
+    //   });
+    //
+    // $(".scissors").click(function(){
+    //     userPlay = options[2];
+    //     console.log("user chose " + options[2]);
+    //   });
 
-    $(".rock").click(function(){
-        userPlay = options[0];
-        console.log("user chose " + options[0]);
-      });
-
-    $(".paper").click(function(){
-        userPlay = options[1];
-        console.log("user chose " + options[1]);
-      });
-
-    $(".scissors").click(function(){
-        userPlay = options[2];
-        console.log("user chose " + options[2]);
-      });
-
-    if (userPlay === "rock" || userPlay === "scissors" || userPlay === "paper"){
+    if (userPlay !== false){
       compTurn();
     } else {
-      console.log("please click a selection to play")
+      return;
     }
+
+    //
+    // if (userPlay === "rock" || userPlay === "scissors" || userPlay === "paper"){
+    //   compTurn();
+    // } else {
+    //   console.log("please click a selection to play")
+    // }
 
   }
 
@@ -65,7 +72,7 @@ $(document).ready(function(){
     score.user += 1;
     //pass into scoreboard
     $(".user").html(score.user);
-    userPlay = "";
+    userPlay = false;
     console.log(score);
   }
 
@@ -74,7 +81,7 @@ $(document).ready(function(){
     score.computer += 1;
     //pass into scoreboard
     $(".comp").html(score.computer);
-    userPlay = "";
+    userPlay = false;
     console.log(score);
   }
 
@@ -88,6 +95,7 @@ $(document).ready(function(){
       if (userPlay === compPlay) {
         console.log(score);
         console.log("Tie! Go again!");
+        userPlay = false;
       } else if (userPlay === "rock" && compPlay === "scissors"){
         updateUserScore();
       } else if (userPlay === "rock" && compPlay === "paper"){
@@ -108,11 +116,43 @@ $(document).ready(function(){
       } else if (score.computer === 5){
         console.log("Sorry! Computer wins!");
       } else {
-        playTurn();
+        $(".rock").click(function(){
+            userPlay = options[0];
+            console.log("user chose " + options[0]);
+            // playTurn();
+          });
+
+        $(".paper").click(function(){
+            userPlay = options[1];
+            console.log("user chose " + options[1]);
+            // playTurn();
+          });
+
+        $(".scissors").click(function(){
+            userPlay = options[2];
+            console.log("user chose " + options[2]);
+            // playTurn();
+          });
       }
     }
   }
 
-  //start game
-  playGame();
+  //start game on click
+  $(".rock").click(function(){
+      userPlay = options[0];
+      console.log("user chose " + options[0]);
+      playGame();
+    });
+
+  $(".paper").click(function(){
+      userPlay = options[1];
+      console.log("user chose " + options[1]);
+      playGame();
+    });
+
+  $(".scissors").click(function(){
+      userPlay = options[2];
+      console.log("user chose " + options[2]);
+      playGame();
+    });
 });
