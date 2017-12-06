@@ -9,7 +9,7 @@ $(function(){
       return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
 
-  var userPlay = prompt("Please choose rock, paper, or scissors.");
+  var userPlay = prompt("Please choose rock, paper, or scissors.").toLowerCase();
 
   // $(".rock").click(function(){
   //   userPlay = options[0];
